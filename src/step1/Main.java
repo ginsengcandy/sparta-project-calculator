@@ -8,33 +8,32 @@ public class Main {
         // 2개의 양의 정수와 부호 입력받기
         while(true){
             System.out.print("[1/2] 0 또는 양의 정수를 입력하세요 : ");
-            int a = scanner.nextInt();
+            int num1 = scanner.nextInt();
             System.out.print("[2/2] 0 또는 양의 정수를 입력하세요 : ");
-            int b = scanner.nextInt();
+            int num2 = scanner.nextInt();
             System.out.print("연산 부호를 입력하세요 (+, -, *, / 중 택1) : ");
             char op =  scanner.next().charAt(0);
-
             //입력받은 정수와 부호로 간단한 계산하기
             int result;
             switch(op) {
                 case '+':
-                    result =  a + b;
+                    result =  num1 + num2;
                     System.out.println("연산 결과 : " + result);
                     break;
                 case '-':
-                    result =  a - b;
+                    result =  num1 - num2;
                     System.out.println("연산 결과 : " + result);
                     break;
                 case '*':
-                    result =  a * b;
+                    result =  num1 * num2;
                     System.out.println("연산 결과 : " + result);
                     break;
                 case '/':
-                    if(b == 0) {
+                    if(num2 == 0) {
                         System.out.println("0으로 나눌 수 없습니다.");
                         break;
                     }
-                    result =   a / b;
+                    result = num1 / num2;
                     System.out.println("연산 결과 : " + result);
                     break;
                 default:
