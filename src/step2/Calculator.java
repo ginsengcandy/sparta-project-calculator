@@ -1,6 +1,7 @@
 package step2;
+
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Calculator {
     private int result;
@@ -12,7 +13,7 @@ public class Calculator {
     }
 
     //1. 0 이상의 정수 2개와 부호 1개를 받아 연산 결과를 출력하는 메서드
-    public int calculate(int num1, int num2, char op) {
+    public int calculate(int num1, int num2, char op) throws  InputMismatchException {
         // 2개의 양의 정수와 부호 입력받기
         try {
             switch (op) {
@@ -43,36 +44,47 @@ public class Calculator {
         return result;
     }
 
-    public void getItem(int index){
+    public void getItem(int index) {
         try {
-            if(results.isEmpty()){
+            if (results.isEmpty()) {
                 throw new IndexOutOfBoundsException();
             }
-            System.out.println((index+1) + "번째 결과 조회 : " + results.get(index));
+            System.out.println((index + 1) + "번째 결과 조회 : " + results.get(index));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("저장된 연산 결과가 없습니다.");
         }
     }
 
-    public void getItem(){
+    public void getItem() {
         try {
-            if(results.isEmpty()){
+            if (results.isEmpty()) {
                 throw new IndexOutOfBoundsException();
             }
-            System.out.print("전체 연산 결과 조회 : ");
-            for(int item : results){
-                System.out.print(item + ", ");
+            System.out.print("전체 연산 결과 조회 : [");
+            for (int item : results) {
+                System.out.print(item + " ");
             }
+            System.out.println("\b]\n"); //리스트를 더 깔끔하게 출력
         } catch (IndexOutOfBoundsException e) {
             System.out.println("저장된 연산 결과가 없습니다.");
         }
     }
 
-    public void setItem(int index, int new_value){
+    public void setItem(int index, int new_value) {
+        try {
         results.set(index, new_value);
+        System.out.println((index + 1) + "번째 연산결과가 " + new_value + "으로 업데이트됐습니다.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("저장된 연산 결과가 없습니다.");
+        }
     }
 
-    public void deleteFirstItem(){
+    public void deleteFirstItem() {
+        try {
         results.remove(0);
+        System.out.println("첫번째 연산결과가 삭제되었습니다.");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("삭제할 항목이 없습니다.");
+        }
     }
 }
