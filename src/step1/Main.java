@@ -15,6 +15,7 @@ public class Main {
             char op =  scanner.next().charAt(0);
             //입력받은 정수와 부호로 간단한 계산하기
             int result;
+            try{
             switch(op) {
                 case '+':
                     result =  num1 + num2;
@@ -29,16 +30,17 @@ public class Main {
                     System.out.println("연산 결과 : " + result);
                     break;
                 case '/':
-                    if(num2 == 0) {
-                        System.out.println("0으로 나눌 수 없습니다.");
-                        break;
-                    }
+                    if(num2 == 0) throw new ArithmeticException();
                     result = num1 / num2;
                     System.out.println("연산 결과 : " + result);
                     break;
                 default:
                     System.out.println("올바른 문자를 입력하세요.");
                     break;
+            }
+            } catch (ArithmeticException e) {
+                System.out.println("0으로 나눌 수 없습니다.");
+                break;
             }
             System.out.print("다시 계산하시겠습니까? 'exit' 를 입력하여 종료 : ");
             String response = scanner.next();
