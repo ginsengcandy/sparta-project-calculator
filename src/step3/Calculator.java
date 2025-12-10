@@ -2,11 +2,14 @@ package step3;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Calculator<T extends Number> {
     //제네릭이지만 최소한 Number 클래스의 하위 클래스여야 값을 읽어올 수 있음
     private double result; //일단 값은 double로 출력
-    private ArrayList<Double> results;//연산 결과를 저장하는 ArrayList
+    private List<Double> results;//연산 결과를 저장하는 ArrayList
 
     //생성자
     Calculator() {
@@ -100,6 +103,31 @@ public class Calculator<T extends Number> {
         this.getItem(); //삭제 후 결과 출력(되려나?)
         } catch (IndexOutOfBoundsException e) {
             System.out.println("삭제할 항목이 없습니다.");
+        }
+    }
+
+    public void showBiggerItem(){
+        try {
+            if (results.isEmpty()) {
+                throw new IndexOutOfBoundsException();
+            }
+            Scanner sc =  new Scanner(System.in);
+            sc.nextLine(); //버퍼 비우기
+            System.out.println("기준값을 입력해주세요 (연산 결과 중 기준값보다 큰 값만 출력합니다.)");
+                double input = sc.nextDouble();
+            //요구사항 : 리스트에서 입력값보다 더 큰 수를 찾아서 출력
+            // 1) 입력값보다 더 큰 수 찾기
+            List<Double> bigNums = results.stream()
+            // 2) 리스트에 저장하기
+                    .filter(num-> num > input)
+                    .map(num -> num*1)
+            // 3) 저장한 리스트 출력하기
+                    .toList();
+            System.out.println(input + "보다 더 큰 연산 결과: " + bigNums);
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("저장된 연산 결과가 없습니다.");
+        } catch (InputMismatchException e) {
+            System.out.println("올바른 입력값이 아닙니다.");
         }
     }
 }

@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("계산기 시작");
         Scanner scanner = new Scanner(System.in);
-//        Calculator calc1 = new Calculator(); 만들기 전에
+        Calculator<Double> doubleCalculator = new Calculator<>(); //무한루프 종료 이후에 메서드 활용할 수 있도록
         while (true) {
             try {
                 System.out.print("[1/2] 첫 번째 숫자를 입력하세요 : ");
@@ -29,7 +29,6 @@ public class Main {
                 String opInput = scanner.next(); //Sting을 enum으로 바꿔줘야 함
                 Operators op = Operators.testSymbol(opInput); //Operators 타입 변수 op에 저장 완료
                 //계산기 객체 생성 후 계산 시작
-                Calculator<Double> doubleCalculator = new Calculator<>();
                 doubleCalculator.calculate(num1, num2, op); //연산 수행 & 출력
             } catch (InputMismatchException e) {
                 System.out.println("인수를 잘못 입력했습니다.");
@@ -44,5 +43,6 @@ public class Main {
                 break;
             } //if문 종료
         } //무한루프 종료
-    }
+        doubleCalculator.showBiggerItem();
+    }//메인함수 종료
 }
