@@ -30,13 +30,14 @@ public class Main {
                 Operators op = Operators.testSymbol(opInput); //Operators 타입 변수 op에 저장 완료
                 //계산기 객체 생성 후 계산 시작
                 Calculator<Double> doubleCalculator = new Calculator<>();
-                doubleCalculator.calculate(num1, num2, op);
-                double result1 = doubleCalculator.calculate(num1, num2, op); //연산 수행
-                System.out.println("연산 결과 : " + result1);
+                doubleCalculator.calculate(num1, num2, op); //연산 수행 & 출력
             } catch (InputMismatchException e) {
                 System.out.println("인수를 잘못 입력했습니다.");
                 scanner.nextLine(); //버퍼 비워주기
-            } // catch문 종료
+            } catch (IllegalArgumentException e){
+                System.out.println("잘못된 연산자입니다.");
+                scanner.nextLine(); //버퍼 비워주기
+            }// catch문 종료
             System.out.print("계속하겠습니까? (종료는 'exit' 입력) : ");
             String answer = scanner.next();
             if (answer.equals("exit")) {

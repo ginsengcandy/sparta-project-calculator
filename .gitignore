@@ -1,0 +1,11 @@
+#ignore all .class files
+*.class
+*.iml
+*.xml
+
+#ignore all files in any following directory
+.idea/
+out/
+
+
+
