@@ -32,11 +32,10 @@ public class Main {
                 doubleCalculator.calculate(num1, num2, op); //연산 수행 & 출력
             } catch (InputMismatchException e) {
                 System.out.println("인수를 잘못 입력했습니다.");
-                scanner.nextLine(); //버퍼 비워주기
             } catch (IllegalArgumentException e){
                 System.out.println("잘못된 연산자입니다.");
-                scanner.nextLine(); //버퍼 비워주기
             }// catch문 종료
+            scanner.nextLine(); //버퍼 비워주기
             System.out.print("계속하겠습니까? (종료는 'exit' 입력) : ");
             String answer = scanner.next();
             if (answer.equals("exit")) {

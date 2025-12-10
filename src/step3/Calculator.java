@@ -112,17 +112,15 @@ public class Calculator<T extends Number> {
                 throw new IndexOutOfBoundsException();
             }
             Scanner sc =  new Scanner(System.in);
-            sc.nextLine(); //버퍼 비우기
-            System.out.println("기준값을 입력해주세요 (연산 결과 중 기준값보다 큰 값만 출력합니다.)");
-                double input = sc.nextDouble();
+            System.out.print("기준값을 입력해주세요 (연산 결과 중 기준값보다 큰 값만 출력합니다.)");
+            double input = sc.nextDouble();
             //요구사항 : 리스트에서 입력값보다 더 큰 수를 찾아서 출력
             // 1) 입력값보다 더 큰 수 찾기
             List<Double> bigNums = results.stream()
             // 2) 리스트에 저장하기
                     .filter(num-> num > input)
-                    .map(num -> num*1)
             // 3) 저장한 리스트 출력하기
-                    .toList();
+                    .collect(Collectors.toList());
             System.out.println(input + "보다 더 큰 연산 결과: " + bigNums);
         } catch (IndexOutOfBoundsException e){
             System.out.println("저장된 연산 결과가 없습니다.");
